@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Credit Hub - Login</title>
+<style>
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Dark Background */
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1c1c1c; /* Dark gray/black */
+  overflow: hidden;
+  position: relative;
+  cursor: none; /* ripples instead of pointer */
+}
+
+/* Container with Glassmorphism */
+.container {
+  width: 90%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  animation: fadeIn 1s ease forwards;
+  position: relative;
+  z-index: 1;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Headings */
+h2 {
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 8px rgba(255,255,255,0.3);
+}
+
+/* Buttons */
+button {
+  position: relative;
+  width: 100%;
+  padding: 12px 0;
+  margin: 15px 0;
+  border: none;
+  border-radius: 12px;
+  background: #333; /* dark button */
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #555;
+  box-shadow: 0 8px 20px rgba(255,255,255,0.3);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Links */
+.link {
+  color: #ff79c6; /* pink accent */
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.link:hover {
+  color: #ff92d0;
+  text-decoration: underline;
+}
+
+/* Error Message */
+.error-message {
+  color: #ff4b5c;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Ripple Effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleAnim 0.8s linear;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+@keyframes rippleAnim {
+  to {
+    transform: scale(25);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  button {
+    font-size: 16px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div id="auth-container">
+        <div id="login-view">
+            <h2>Login</h2>
+            <input type="email" id="login-email" placeholder="Email" autocomplete="username">
+            <input type="password" id="login-password" placeholder="Password" autocomplete="current-password">
+            <button id="login-btn">Login</button>
+            <p>Don't have an account? <span id="show-register" class="link">Register here</span></p>
+        </div>
+        <div id="register-view" style="display: none;">
+            <h2>Register</h2>
+            <input type="email" id="register-email" placeholder="Email" autocomplete="username">
+            <input type="password" id="register-password" placeholder="Password" autocomplete="new-password">
+            <button id="register-btn">Register</button>
+            <p>Already have an account? <span id="show-login" class="link">Login here</span></p>
+        </div>
+         <p id="auth-error" class="error-message"></p>
+    </div>
+</div>
+
+<script src="static/js/app.js"></script>
+
+<!-- Multi-Color Ripple Script -->
+<!-- Soft Multi-Color Ripple Script -->
+<script>
+const colors = [
+  'rgba(255,121,198,0.4)',  // soft pink
+  'rgba(255,150,208,0.4)',  // pastel pink
+  'rgba(139,233,253,0.3)',  // soft blue
+  'rgba(80,250,123,0.3)',   // soft green
+  'rgba(189,147,249,0.4)'   // soft purple
+];
+
+document.body.addEventListener('mousemove', function(e){
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple';
+    const size = Math.random() * 20 + 30; // random size for natural effect
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - size/2) + 'px';
+    ripple.style.top = (e.clientY - size/2) + 'px';
+    ripple.style.background = colors[Math.floor(Math.random()*colors.length)];
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 800);
+});
+</script>
+
+</body>
+</html>
