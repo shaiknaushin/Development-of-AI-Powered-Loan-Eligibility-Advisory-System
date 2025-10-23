@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to AI Credit Hub</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(270deg, #000000, #1a1a1a, #000000);
+    background-size: 600% 600%;
+    animation: gradientBG 20s ease infinite;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  @keyframes gradientBG {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+    color: white;
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 4em;
+    margin-bottom: 15px;
+    line-height: 1.1;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowText 8s linear infinite;
+  }
+
+  @keyframes rainbowText {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+  }
+
+  p {
+    font-size: 1em;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 2s forwards 1s;
+  }
+
+  @keyframes fadeIn { to { opacity:1; } }
+
+  .welcome-btn {
+    padding: 15px 40px;
+    font-size: 1.1em;
+    text-decoration: none;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    transition: all 0.3s ease;
+    display: inline-block;
+    animation: fadeIn 2s forwards 1.5s;
+  }
+
+  .welcome-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #ff69b4, #ff1493);
+  }
+
+  /* Ripple styling */
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    opacity: 0.4;
+    background-color: rgba(255, 105, 180);
+    pointer-events: none;
+    animation: rippleAnim 6s linear forwards;
+  }
+
+  @keyframes rippleAnim {
+    to {
+      transform: scale(8);
+      opacity: 0;
+    }
+  }
+
+  /* Responsive */
+  @media(max-width: 768px) {
+    h1 { font-size: 3em; }
+    p { font-size: 0.9em; }
+    .welcome-btn { padding: 12px 35px; font-size: 1em; }
+  }
+
+  @media(max-width: 480px) {
+    h1 { font-size: 2.2em; }
+    p { font-size: 0.8em; }
+    .welcome-btn { padding: 10px 30px; font-size: 0.9em; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to AI Credit Hub</h1>
+    <p>Your intelligent partner in credit underwriting. Log in or register to explore personalized insights.</p>
+    <a href="login.html" class="welcome-btn">Get Started</a>
+</div>
+
+<script>
+  const body = document.body;
+
+  // Automatically generate ripples continuously
+  function createRipple() {
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+    const size = Math.random() * 40 + 20;
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple';
+    ripple.style.left = (x - size/2) + 'px';
+    ripple.style.top = (y - size/2) + 'px';
+    ripple.style.width = ripple.style.height = size + 'px';
+    body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 6000); // remove after animation
+  }
+
+  // Create ripples every 500ms
+  setInterval(createRipple, 500);
+</script>
+</body>
+</html>
